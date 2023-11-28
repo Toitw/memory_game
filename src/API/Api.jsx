@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const PokemonFetcher = () => {
-  const [pokemon, setPokemon] = useState(null);
+function RandomPokemonGrid() {
+    const [pokemons, setPokemons] = useState([]);
 
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
-        const randomId = Math.floor(Math.random() * 898) + 1; // Generate a random ID between 1 and 898 (total number of Pokémon)
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
-        const data = await response.json();
-        setPokemon(data);
-      } catch (error) {
-        console.error('Error fetching Pokémon:', error);
-      }
-    };
+    useEffect(() => {
+        const fetchPokemons = async () => {
+            let fetchedPokemons = [];
+            for (let i = 0; i < 12; i++) {
+                const randomId = Math.floor(Math.random() * 898) + 1;
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+                const data = await response.json();
+                fetchedPokemons.push(data);
+            }
+            setPokemons(fetchedPokemons);
+        };
 
-    fetchPokemon();
-  }, []);
+        fetchPokemons();
+    }, []);
 
-  if (!pokemon) {
-    return <div>Loading...</div>;
-  }
+    if (pokemons.length === 0) {
+        return <div>Loading...</div>;
+    }
 
-  return (
-    <div>
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-    </div>
-  );
-};
+    return pokemons
+}
 
-export default PokemonFetcher;
+export default RandomPokemonGrid;

@@ -5,6 +5,14 @@ const Cards = () => {
   const [cards, setCards] = useState([]);
   const [counter, setCounter] = useState(0);
 
+  setCards(() => {
+    const cards = [];
+    for (let i = 0; i < 10; i++) {
+      cards.push(<PokemonFetcher />);
+    }
+    return cards;
+  });
+
   useEffect(() => {
     // Shuffle the cards when the component mounts
     shuffleCards();
