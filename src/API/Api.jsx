@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function RandomPokemonGrid() {
+function useRandomPokemonGrid() {
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
@@ -25,4 +25,4 @@ function RandomPokemonGrid() {
     return pokemons
 }
 
-export default RandomPokemonGrid;
+export default useRandomPokemonGrid;
