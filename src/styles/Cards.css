@@ -1,0 +1,13 @@
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.pokemon-grid img {
+    min-width: 200px;
+    height: auto;
+    object-fit: cover;
+}

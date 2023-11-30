@@ -1,49 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import PokemonFetcher from '../API/Api';
+import React from 'react';
+import RandomPokemonGrid from '../API/Api';
+import '../styles/Cards.css';
 
 const Cards = () => {
-  const [cards, setCards] = useState([]);
-  const [counter, setCounter] = useState(0);
+    const pokemons = RandomPokemonGrid();
 
-  setCards(() => {
-    const cards = [];
-    for (let i = 0; i < 10; i++) {
-      cards.push(<PokemonFetcher />);
+    if (pokemons.length === 0) {
+        return <div>Loading...</div>;
     }
-    return cards;
-  });
 
-  useEffect(() => {
-    // Shuffle the cards when the component mounts
-    shuffleCards();
-  }, []);
-
-    const shuffleCards = () => {
-        const shuffledCards = [...cards];
-        for (let i = shuffledCards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
-        }
-        setCards(shuffledCards);
-    };
-
-  const handleCardClick = (cardId) => {
-    // Logic to handle card click goes here
-    // ...
-    if (/* Card is repeated */) {
-      setCounter(0);
-    } else {
-      setCounter(counter + 1);
-    }
-  };
-
-  return (
-    <div>
-      {/* Render the grid of cards */}
-      {/* ... */}
-      <p>Counter: {counter}</p>
-    </div>
-  );
+    return (
+        <div className="pokemon-grid">
+            {pokemons.map(pokemon => (
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} key={pokemon.id} />
+            ))}
+        </div>
+    );
 };
 
 export default Cards;

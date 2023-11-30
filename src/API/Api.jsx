@@ -18,10 +18,6 @@ function RandomPokemonGrid() {
         fetchPokemons();
     }, []);
 
-    if (pokemons.length === 0) {
-        return <div>Loading...</div>;
-    }
-
     return pokemons
 }
 
