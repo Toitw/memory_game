@@ -6,7 +6,7 @@ const Cards = () => {
     const pokemonsFromApi = useRandomPokemonGrid();
     const [pokemons, setPokemons] = useState([]);
     const [clickedPokemon, setClickedPokemon] = useState([]);
-    // const [score, setScore] = useState(0);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         setPokemons(pokemonsFromApi);
@@ -18,10 +18,10 @@ const Cards = () => {
 
     const handleCardClick = (pokemonId) => {
         if (clickedPokemon.includes(pokemonId)) {
-            // setScore(0);
+            setScore(0);
             setClickedPokemon([]);
         } else {
-            // setScore(score + 1);
+            setScore(score + 1);
             setClickedPokemon([...clickedPokemon, pokemonId]);
         }
     };
@@ -46,10 +46,13 @@ const Cards = () => {
                     <img
                         src={pokemon.sprites.front_default}
                         alt={pokemon.name}
-                        key={pokemon.id} // Assuming you use the ID from the Pokémon API
+                        key={pokemon.id} 
                         onClick={() => handleCardClick(pokemon.id)}
                     />
                 ))}
+            </div>
+            <div className="score">
+                <h1>Score: {score}</h1>
             </div>
         </div>
     );
