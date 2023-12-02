@@ -4,6 +4,11 @@
     grid-gap: 10px;
     max-width: 1500px;
     margin: auto;
+    border: 5px solid white;
+    border-radius: 10%;
+    background: linear-gradient(to right, red, orange, yellow, green);
+    background-clip: border-box;
+    box-decoration-break: clone;
 }
 
 .pokemon-grid img {
