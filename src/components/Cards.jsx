@@ -7,6 +7,7 @@ const Cards = () => {
     const [pokemons, setPokemons] = useState([]);
     const [clickedPokemon, setClickedPokemon] = useState([]);
     const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(0);
 
     useEffect(() => {
         setPokemons(pokemonsFromApi);
@@ -19,6 +20,7 @@ const Cards = () => {
     const handleCardClick = (pokemonId) => {
         if (clickedPokemon.includes(pokemonId)) {
             setScore(0);
+            setHighScore(score > highScore ? score : highScore);
             setClickedPokemon([]);
         } else {
             setScore(score + 1);
@@ -53,6 +55,7 @@ const Cards = () => {
             </div>
             <div className="score">
                 <h1>Score: {score}</h1>
+                <h1>High Score: {highScore}</h1>
             </div>
         </div>
     );
