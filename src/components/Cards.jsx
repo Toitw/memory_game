@@ -8,6 +8,7 @@ const Cards = () => {
     const [clickedPokemon, setClickedPokemon] = useState([]);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [winMessage, setWinMessage] = useState('');
 
     useEffect(() => {
         setPokemons(pokemonsFromApi);
@@ -17,6 +18,8 @@ const Cards = () => {
         shuffleArray();
     }, [clickedPokemon]); // Shuffle whenever clickedPokemon changes
 
+
+
     const handleCardClick = (pokemonId) => {
         if (clickedPokemon.includes(pokemonId)) {
             setScore(0);
@@ -25,6 +28,9 @@ const Cards = () => {
         } else {
             setScore(score + 1);
             setClickedPokemon([...clickedPokemon, pokemonId]);
+            if (score === 11) {
+                setWinMessage('You win!');
+            }
         }
     };
 
@@ -56,6 +62,7 @@ const Cards = () => {
             <div className="score">
                 <h1>Score: {score}</h1>
                 <h1>High Score: {highScore}</h1>
+                <h2 style={{ color: 'red', fontWeight: 'bold' }}>{winMessage}</h2>
             </div>
         </div>
     );
