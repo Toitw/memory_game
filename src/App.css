@@ -43,7 +43,7 @@
 }
 
 body {
-  background-image: url('src/assets/forest-wallpaper.jpg');
+  background-image: url('./assets/forest-wallpaper.jpg');
   background-size: cover;
   z-index: -1;
 }
